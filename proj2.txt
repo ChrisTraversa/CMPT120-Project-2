@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+                <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+                <meta name="author" content="Chris Traversa" />
+                <title>The Hungry Man</title>
+                <style>
+                        .footer {font-style: italic;}
+                </style>
+		            
+           <script type = "text/JavaScript">
+           
+             var score = 0;
+             var hasvisitednorth = false;
+             var hasvisitedsouth = false;
+             var hasvisitedeast = false;
+             var hasvisitedwest = false;   
+             
+             function North1() {
+                  var n1 = "You are at Champagnat, with paths up ahead and to your east";
+                  alert(n1);
+                  if(!hasvisitednorth){
+                  score = score + 5;  
+                  (hasvisitednorth) = true;
+                  }    
+             }
+                
+		         function South1() {
+                  var s1 = "What are you doing, are you trying to go to bed on an empty stomach";
+                  alert(s1);
+                  if(!hasvisitedsouth){
+                  score = score + 5;  
+                  (hasvisitedsouth) = true;
+                  }  
+             }
+                
+		         function East1() {
+                  var e1 = "You cannot see anything, you might fall down the hill if you go any further";
+                  alert(e1);
+                  if(!hasvisitedeast){
+                  score = score + 5;  
+                  (hasvisitedeast) = true;
+                  }      
+             }
+                
+		         function West1() {
+                  var w1 = "You are in the parking lot of Leo, you can either go west or south";
+                  alert(w1);
+                  if(!hasvisitedwest){
+                  score = score + 5;  
+                  (hasvisitedwest) = true;
+                  }  
+             }
+		
+		         function getScore() {
+		             alert(score);
+		         }
+
+           </script>
+    </head>
+    <body>
+        <h1>The Hungry Man</h1>
+                <textarea rows ="8" cols ="40">You are a young freshman at Marist College and all you want is McDonalds. You have Sheehan behind you and your mind on the prize. Up ahead is another building, to your right is pitch black and to your left is a parking lot. Good Luck!  </textarea>
+
+                <br>
+                <input type="button"
+                       value="North"
+                       onclick="North1();">
+
+	        <input type="button"
+                       value="South"
+                       onclick="South1();">
+
+		<input type="button"
+                       value="East"
+                       onclick="East1();">
+
+		<input type="button"
+                       value="West"
+                       onclick="West1();">
+		
+		<input type="button"
+		       value="Score"
+		       onclick="getScore();">
+
+                <p class="footer">
+                        <a href="http://validator.w3.org/check?uri=referer">Validate</a>
+                </p>
+		<p>
+                         <a href = "mailto:Christopher.Traversa1@marist.edu"> Contact Me
+                        </a>
+                </p>
+
+    </body>
+</html> 

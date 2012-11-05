@@ -7,38 +7,61 @@ body {background-color: black;color: yellow;}
 .footer {font-style: italic;}
 </style>
 		            
-<script>
-           
-	var currentLocation = "sheahan";
-	var score = 0;
-	var hasVisitedChamp1 = false;
-	var hasVisitedChamp2 = false;
-	var hasVisitedSheahan = false;
-	var hasVisitedRiver = false;
-	var hasVisitedBed = false;
-	var hasVisitedHill1 = false;
-	var hasVisitedHill2 = false;
-	var hasVisitedLot = false;   
-	var hasVisitedTaxi1= false;
-             
+      <script>
+    var currentLocation   = "sheahan";
+    var score             = 0;
+    var hasVisitedChamp1  = false;
+    var hasVisitedChamp2  = false;
+    var hasVisitedSheahan = false;
+    var hasVisitedRiver   = false;
+    var hasVisitedBed     = false;
+    var hasVisitedHill1   = false;
+    var hasVisitedHill2   = false;
+    var hasVisitedLot     = false;   
+    var hasVisitedTaxi1   = false;
+    
       function giveScore() {
-msg= "Score:"+score;
-updateDisplay(msg);
+        msg= "Score:"+score;
+        updateDisplay(msg);
       } 
-
-             
+      function init() {
+        msg="You are a young freshman at Marist College and all you want is McDonalds."+
+            "You are in front of Sheahan Hall with Champagnat up ahead. To your east"+
+            " is an extremely dark hill area and to your west is a parking lot. Good Luck!"
+        updateDisplay(msg);
+      }
+      
+      function helpMe() {
+        msg= "Looks like you need some help. Press the directional buttons in the direction"+
+             " you want to go. You can also enter N,n,S,s,W,w,E,e in the input for north, south"+
+             " east, and west respectively. To pick up items, type in pick up or get 'item name'."+
+             " To use an item in your inventory type in use 'item name'. Good Luck"
+        updateDisplay(msg);
+      }     
+      //For the buttons that get disabled, I only disabled the ones that will be 
+      //disabled by the end of the game. Even though at this time there will be
+      //directions you cannot go at this moment, the button will not be disabled
+      //just because in the future they will be open.
       function btn_go_north() {
         if(currentLocation==="sheahan"){
           currentLocation = "champ1";
           location_Champ1();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = true;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
           if(!hasVisitedChamp1){
             score= score + 5;
             hasVisitedChamp1 = true;
           }
-         }
+        }
         else if(currentLocation==="champ1"){
           currentLocation="champ2";
           location_Champ2();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
           if(!hasVisitedChamp2){
             score= score + 5;
             hasVisitedChamp2 = true;
@@ -47,13 +70,25 @@ updateDisplay(msg);
         else if(currentLocation==="bedtime"){
           currentLocation="sheahan";
           location_Sheahan();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
           if(!hasVisitedSheahan){
             score= score + 5;
             hasVisitedSheahan = true;
           }
         }
+        else if(currentLocation==="champ2"){
+          currentLocation="library1";
+          location_Lib1();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
+         }
         else {
-          updateDisplay("You cannot go this way now!")
+          updateDisplay("You cannot go this way for now.")
         }  
       }
 
@@ -63,6 +98,10 @@ updateDisplay(msg);
         if(currentLocation==="sheahan"){
           currentLocation ="bedtime";
           bedtime();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = true;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = true;
           if(!hasVisitedBed){
             score= score + 5;
             hasVisitedBed = true;
@@ -71,6 +110,10 @@ updateDisplay(msg);
         else if(currentLocation==="champ2"){
           currentLocation="champ1";
           location_Champ1();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = true;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
           if(!hasVisitedChamp1){
             score= score + 5;
             hasVisitedChamp1 = true;
@@ -79,6 +122,18 @@ updateDisplay(msg);
         else if(currentLocation==="champ1"){
           currentLocation="sheahan";
           location_Sheahan();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
+        }
+        else if(currentLocation==="library1"){
+          currentLocation="champ2";
+          location_Champ2();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
         }
         else {
           updateDisplay("You cannot go this way now!")
@@ -89,6 +144,10 @@ updateDisplay(msg);
         if(currentLocation==="sheahan"){
           currentLocation ="darkhill1"
           location_darkhill1();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = true;
+          document.getElementById("ss").disabled = true;
           if(!hasVisitedHill1){
             score= score + 5;
             hasVisitedHill1 = true;
@@ -97,6 +156,10 @@ updateDisplay(msg);
         else if(currentLocation==="darkhill1"){
           currentLocation="darkhill2";
           location_darkhill2();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = true;
           if(!hasVisitedHill2){
             score= score + 5;
             hasVisitedHill2 = true;
@@ -105,18 +168,46 @@ updateDisplay(msg);
         else if(currentLocation==="river"){
           currentLocation="parkinglot";
           parkinglot();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = true;
+          document.getElementById("ss").disabled = true;
         }
         else if(currentLocation==="parkinglot"){
           currentLocation="sheahan";
           location_Sheahan();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
         }
-        else if(currentLocation==="champ1"){
+        else if(currentLocation==="champ2"){
           currentLocation="taxi1";
           location_taxi1();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = true;
+          document.getElementById("ss").disabled = true;
           if(!hasVisitedTaxi1){
           score= score + 5;
           hasVisitedTaxi1 = true;
           }
+        }
+        else if(currentLocation==="library1"){
+          currentLocation="library2";
+          location_Lib2();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = true;
+          document.getElementById("ss").disabled = true;
+        }
+         else if(currentLocation==="dorm"){
+          currentLocation="champ2";
+          location_Champ2();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
         }
         else {
           updateDisplay("You cannot go here right now!")
@@ -127,6 +218,10 @@ updateDisplay(msg);
         if(currentLocation==="sheahan"){
           currentLocation ="parkinglot"
           parkinglot();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = true;
+          document.getElementById("ss").disabled = true;
           if(!hasVisitedLot){
           score= score + 5;
           hasVisitedLot = true;
@@ -135,6 +230,10 @@ updateDisplay(msg);
         else if(currentLocation==="parkinglot"){
           currentLocation="river";
           river();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = true;
           if(!hasVisitedRiver){
             score= score + 5;
             hasVisitedRiver = true;
@@ -143,10 +242,34 @@ updateDisplay(msg);
         else if(currentLocation==="darkhill1"){
           currentLocation="sheahan";
           location_Sheahan();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
         }
         else if(currentLocation==="taxi1"){
-        currentLocation="champ1";
-        location_Champ1();
+          currentLocation="champ2";
+          location_Champ2();
+          document.getElementById("ww").disabled = false;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
+        }
+         else if(currentLocation==="champ2"){
+          currentLocation="dorm";
+          location_Dorm();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = true;
+          document.getElementById("ss").disabled = true;
+        }
+         else if(currentLocation==="library2"){
+          currentLocation="library1";
+          location_Lib1();
+          document.getElementById("ww").disabled = true;
+          document.getElementById("ee").disabled = false;
+          document.getElementById("nn").disabled = false;
+          document.getElementById("ss").disabled = false;
         }
         else {
         updateDisplay("You cannot go here right now!")
@@ -156,7 +279,7 @@ updateDisplay(msg);
 
       function location_Champ1(){
         var msg = "You are outside of Champagnat,"+
-        " with paths up ahead and to your east"
+        " with a path up ahead"
         updateDisplay(msg);
       }
 
@@ -180,14 +303,12 @@ updateDisplay(msg);
         updateDisplay(msg);
       }
 	     
-	     
       function location_darkhill1(){
         var msg = "You cannot see anything, you might fall down the hill if you go"+
         " any further."
         updateDisplay(msg);
       }
-
-	     
+  
       function location_darkhill2(){
         var msg = "You could not see, so you fell to your death, nice job. Refresh the page and restart."
         updateDisplay(msg);
@@ -198,19 +319,34 @@ updateDisplay(msg);
       }
 
       function parkinglot(){
-        var msg = "You are in the parking lot of Leo Hall"+
-        " If you keep going west, you'll get to the Hudson River."
+        var msg = "You are in the parking lot of Leo Hall. There is a letter on the ground and"+
+        " if you keep going west, you'll get to the Hudson River."
         updateDisplay(msg);
       }
-
-
 
       function river(){
         var msg = "There is a speedboat on the river, but no keys."
           updateDisplay(msg);
       }
 
-
+       function location_Lib1(){
+        var msg = "You are outside the library, go east to enter or keep traveling ahead."
+          updateDisplay(msg);
+      }
+       
+        function location_Lib2(){
+        var msg = "You have entered the library so be quiet. There is a back exit if you"+
+                  " keep going east but it is blocked by a bunch of nerds who just want to have fun."
+          updateDisplay(msg);
+      }
+      
+       function location_Dorm(){
+        var msg = "You are inside Champagnat with a group of kids who wanted to show you"+
+                  " how awesome their room was with black lights and posters. You realize"+
+                  " there is a glowstick on the bed and that these kids are weirdos."
+          updateDisplay(msg);
+      }
+      
       function updateDisplay(msg) {
                
         var ta = document.getElementById("taGame");
@@ -219,7 +355,7 @@ updateDisplay(msg);
 
       function clickAway(){
         var text=document.getElementById("textInput");
-        if((text.value==="n")||(text.value==="N")){
+        if((text.value==="N")||(text.value==="n")){
           btn_go_north();
         }
         else if((text.value==="S")||(text.value==="s")){
@@ -231,42 +367,46 @@ updateDisplay(msg);
         else if((text.value==="W")||(text.value==="w")){
           btn_go_west();
         }
+        else if(text.value==="help"){
+          helpMe();
+        }
         else {
-          msg="That is not a direction" + "\n" +
-          "Directions consist of N,n,S,s,E,e,W,w for north south east west respectivley."
+          msg="I do not understand your command. Type help if you need it, I know I do!"
           updateDisplay(msg);
         }
       }
+
 
     
       </script>
 
   </head>
-  <body>
+  <body onload="init()">
     <h1>The Hungry Man</h1>
     <textarea rows ="25" cols ="80" id="taGame">
-    You are a young freshman at Marist College and all you want is McDonalds.You have Sheehan behind you and your mind on the prize. 
-    Up ahead is another building, to your right is pitch black and to your left is a parking lot. 
-    Good Luck!  
     </textarea>
 
     <br>
                 
       <input type="button"
              value="North"
-             onclick="btn_go_north();">
+             onclick="btn_go_north();"
+             id="nn">
 
       <input type="button"
              value="South"
-             onclick="btn_go_south();">
+             onclick="btn_go_south();"
+             id="ss">
 
       <input type="button"
              value="East"
-             onclick="btn_go_east();">
+             onclick="btn_go_east();"
+             id="ee">
 
       <input type="button"
              value="West"
-             onclick="btn_go_west();">
+             onclick="btn_go_west();"
+             id="ww">
 		
       <input type="button"
              value="Score"

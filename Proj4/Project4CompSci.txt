@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+<title>The Hungry Man</title>
+<style type="text/css" href="styles.css"></style>
+	 
+  <script type="text/javascript" src="location.js">
+    
+
+  </head>
+  <body onload="init()">
+    <h1>The Hungry Man</h1>
+    <textarea rows ="25" cols ="80" id="taGame">
+    </textarea>
+
+    <br>
+                
+      <input type="button"
+             value="North"
+             onclick="btn_go_north();"
+             id="nn">
+
+      <input type="button"
+             value="South"
+             onclick="btn_go_south();"
+             id="ss">
+
+      <input type="button"
+             value="East"
+             onclick="btn_go_east();"
+             id="ee">
+
+      <input type="button"
+             value="West"
+             onclick="btn_go_west();"
+             id="ww">
+		
+      <input type="button"
+             value="Score"
+             onclick="giveScore();">
+                       
+      <input type="text" id="textInput">
+                
+      <input type="button"
+             value="Go"
+             onclick="clickAway();">
+		
+
+    <p class="footer">
+      <a href="http://validator.w3.org/check?uri=referer">Validate</a>
+    </p>
+    <p>
+      <a href = "mailto:Christopher.Traversa1@marist.edu"> Contact Me
+      </a>
+    </p>
+    <br>
+      <image src="MapProj4.jpg" width="375" height="300" alt="Map">
+	<br>	           
+  </body>
+</html> 

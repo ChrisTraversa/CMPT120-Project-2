@@ -4,12 +4,11 @@
 <title>The Hungry Man</title>
 <style type="text/css" href="styles.css"></style>
 	 
-  <script type="text/javascript" src="location.js">
     
-
   </head>
   <body onload="init()">
     <h1>The Hungry Man</h1>
+    <script type ="text/javascript" src="location.js">
     <textarea rows ="25" cols ="80" id="taGame">
     </textarea>
 

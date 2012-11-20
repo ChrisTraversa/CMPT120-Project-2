@@ -9,6 +9,7 @@
   <body onload="init()">
     <h1>The Hungry Man</h1>
     <script type ="text/javascript" src="location.js">
+    </script>
     <textarea rows ="25" cols ="80" id="taGame">
     </textarea>
 
